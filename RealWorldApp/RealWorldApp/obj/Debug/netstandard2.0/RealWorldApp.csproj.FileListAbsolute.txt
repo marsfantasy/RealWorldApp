@@ -1,0 +1,16 @@
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\bin\Debug\netstandard2.0\RealWorldApp.deps.json
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\bin\Debug\netstandard2.0\RealWorldApp.dll
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\bin\Debug\netstandard2.0\ref\RealWorldApp.dll
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\bin\Debug\netstandard2.0\RealWorldApp.pdb
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\RealWorldApp.csprojAssemblyReference.cache
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\RealWorldApp.AssemblyInfoInputs.cache
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\RealWorldApp.AssemblyInfo.cs
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\RealWorldApp.dll
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\ref\RealWorldApp.dll
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\RealWorldApp.pdb
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\Pages\SignupPage.xaml.g.cs
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\Pages\LoginPage.xaml.g.cs
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\RealWorldApp.csproj.CoreCompileInputs.cache
+C:\Users\marsfantasy\source\repos\Udemy\RealWorldApp\RealWorldApp\RealWorldApp\obj\Debug\netstandard2.0\XamlC.stamp
