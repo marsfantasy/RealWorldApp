@@ -112,6 +112,7 @@ namespace RealWorldApp.Services
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
             var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Products/PopularProducts");
+            var deserializeData = JsonConvert.DeserializeObject<List<PopularProduct>>(response);
             return JsonConvert.DeserializeObject<List<PopularProduct>>(response);
         }
 

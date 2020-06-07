@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace RealWorldApp.Models
         public string name { get; set; }
         public float price { get; set; }
         public string imageUrl { get; set; }
+        public string FullImageUrl => AppSettings.ApiUrl + imageUrl;
     }
 
 }
