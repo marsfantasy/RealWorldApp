@@ -6,7 +6,6 @@ namespace RealWorldApp
 {
     public static class AppSettings
     {
-        //public static string ApiUrl = "https://localhost:44333/";
         public static string ApiUrl = "https://foodapi.azurewebsites.net/";
     }
 }

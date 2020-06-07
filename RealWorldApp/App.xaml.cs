@@ -1,5 +1,6 @@
 ﻿using RealWorldApp.Pages;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,17 @@ namespace RealWorldApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SignupPage());//new SignupPage(); //new MainPage();
+            //MainPage = new NavigationPage(new SignupPage()); //new MainPage();
+            var accesstoken = Preferences.Get("accessToken", string.Empty);
+            if (string.IsNullOrEmpty(accesstoken))
+            {
+                MainPage = new NavigationPage(new SignupPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new HomePage());
+            }
+
         }
 
         protected override void OnStart()

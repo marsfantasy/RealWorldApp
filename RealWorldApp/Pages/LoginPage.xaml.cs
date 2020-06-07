@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,9 +18,23 @@ namespace RealWorldApp.Pages
             InitializeComponent();
         }
 
-        private void BtnLogin_Clicked(object sender, EventArgs e)
+        private void TapBackArrow_Tapped(object sender, EventArgs e)
         {
-
+            Navigation.PopModalAsync();
         }
+
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
+        {
+            var response = await RealWorldApp.Services.ApiService.Login(EntEmail.Text, EntPassword.Text);
+            if (response)
+            {
+                Application.Current.MainPage = new NavigationPage(new HomePage());
+            }
+            else
+            {
+                await DisplayAlert("Oops", "Something went wrong", "Cancel");
+            }
+        }
+
     }
 }

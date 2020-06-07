@@ -37,5 +37,10 @@ namespace RealWorldApp.Pages
                 await DisplayAlert("Oops", "Something went wrong", "Cancel");
             }
         }
+
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new LoginPage());
+        }
     }
 }
