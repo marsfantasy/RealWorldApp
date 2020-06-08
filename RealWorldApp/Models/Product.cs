@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealWorldApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace RealWorldApp.Models
         public bool isPopularProduct { get; set; }
         public int categoryId { get; set; }
         public object imageArray { get; set; }
-    }
 
+        public string FullImageurl => AppSettings.ApiUrl + imageUrl;
+    }
 }

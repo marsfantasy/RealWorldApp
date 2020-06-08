@@ -15,7 +15,7 @@
                 <CollectionView.Header>
                     <StackLayout>
                         <Label Margin="15,170,15,0" Text="Our Menu" TextColor="Black" FontSize="Medium" />
-                        <CollectionView x:Name="CvCategories" HeightRequest="130" SelectionMode="Single">
+                        <CollectionView x:Name="CvCategories" HeightRequest="130" SelectionMode="Single" SelectionChanged="CvCategories_SelectionChanged">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Horizontal" />
                             </CollectionView.ItemsLayout>
@@ -25,9 +25,9 @@
                                         <Frame Padding="0" BackgroundColor="Transparent" Margin="15,0,15,0" HasShadow="True">
                                             <StackLayout Orientation="Vertical">
                                                 <Frame Padding="0" CornerRadius="100" IsClippedToBounds="True" HeightRequest="90" WidthRequest="90" HorizontalOptions="Center">
-                                                    <Image Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                                    <Image Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding FullImageUrl}" />
                                                 </Frame>
-                                                <Label TextColor="#B00905" HorizontalTextAlignment="Center" FontSize="Medium" />
+                                                <Label TextColor="#B00905" HorizontalTextAlignment="Center" FontSize="Medium" Text="{Binding name}" />
                                             </StackLayout>
                                         </Frame>
                                     </StackLayout>
