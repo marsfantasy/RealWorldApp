@@ -15,7 +15,7 @@ namespace RealWorldApp.Services
     public static class ApiService
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="name"></param>
         /// <param name="email"></param>
@@ -39,7 +39,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
@@ -60,13 +60,13 @@ namespace RealWorldApp.Services
             var jsonResult = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Token>(jsonResult);
             Preferences.Set("accessToken", result.access_token);
-            Preferences.Set("userID", result.user_Id);
+            Preferences.Set("userId", result.user_Id);
             Preferences.Set("userName", result.user_name);
             return true;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static async Task<List<Category>> GetCategories()
@@ -78,7 +78,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static async Task<List<PopularProduct>> GetPopularProducts()
@@ -117,7 +117,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="addToCart"></param>
         /// <returns></returns>
@@ -127,13 +127,13 @@ namespace RealWorldApp.Services
             var json = JsonConvert.SerializeObject(addToCart);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
-            var response = await httpClient.PostAsync(AppSettings.ApiUrl + "api/ShoppingCartItems/Register", content);
+            var response = await httpClient.PostAsync(AppSettings.ApiUrl + "api/ShoppingCartItems", content);
             if (!response.IsSuccessStatusCode) return false;
             return true;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -146,7 +146,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -159,7 +159,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -172,7 +172,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -186,7 +186,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
@@ -203,7 +203,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -216,7 +216,7 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>

@@ -48,7 +48,7 @@
                             <Label Text="$" TextColor="#80574D" FontSize="Medium" />
                         </StackLayout>
                     </StackLayout>
-                    <Button x:Name="BtnAddToCart" Text="Add To Cart" HorizontalOptions="FillAndExpand" BackgroundColor="#CE0B06" TextColor="White" />
+                    <Button x:Name="BtnAddToCart" Text="Add To Cart" HorizontalOptions="FillAndExpand" BackgroundColor="#CE0B06" TextColor="White" Clicked="BtnAddToCart_Clicked" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

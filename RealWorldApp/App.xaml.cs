@@ -22,7 +22,6 @@ namespace RealWorldApp
             {
                 MainPage = new NavigationPage(new HomePage());
             }
-
         }
 
         protected override void OnStart()
