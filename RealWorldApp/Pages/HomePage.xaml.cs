@@ -78,10 +78,9 @@ namespace RealWorldApp.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void TapCloseMenu_Tapped(object sender, EventArgs e)
+        private void TapCloseMenu_Tapped(object sender, EventArgs e)
         {
-            await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
-            GridOverlay.IsVisible = false;
+            CloseHamBurgerMenu();
         }
 
         /// <summary>
@@ -92,6 +91,21 @@ namespace RealWorldApp.Pages
             base.OnAppearing();
             var response = await ApiService.GetTotalCartItems(Preferences.Get("userId", 0));
             LblTotalItems.Text = response.totalItems.ToString();
+        }
+
+        /// <summary>CloseHamBurgerMenu
+        ///
+        /// </summary>
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            CloseHamBurgerMenu();
+        }
+
+        private async void CloseHamBurgerMenu()
+        {
+            await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
+            GridOverlay.IsVisible = false;
         }
 
         /// <summary>
@@ -106,6 +120,49 @@ namespace RealWorldApp.Pages
             //Navigation.PushModalAsync(new ProductListPage());
             Navigation.PushModalAsync(new ProductListPage(currentSelection.id, currentSelection.name));
             ((CollectionView)sender).SelectedItem = null;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentSelection = e.CurrentSelection.FirstOrDefault() as PopularProduct;
+            if (currentSelection == null) return;
+            Navigation.PushModalAsync(new ProductDetailPage(currentSelection.id));
+            ((CollectionView)sender).SelectedItem = null;
+        }
+
+        /// <summary>
+        /// 點選購物車圖示時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapCartIcon_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new CartPage());
+        }
+
+        /// <summary>
+        /// 點選訂單圖示時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapOrders_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new OrdersPage());
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapCart_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new CartPage());
         }
     }
 }

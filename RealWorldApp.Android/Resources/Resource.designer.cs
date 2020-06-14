@@ -8392,6 +8392,9 @@ namespace RealWorldApp.Droid
 			// aapt resource value: 0x7F070081
 			public const int tooltip_frame_light = 2131165313;
 			
+			// aapt resource value: 0x7F070082
+			public const int upl_logo = 2131165314;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

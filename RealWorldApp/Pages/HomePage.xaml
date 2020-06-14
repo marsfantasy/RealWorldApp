@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
-            <CollectionView x:Name="CvProducts" SelectionMode="Single">
+            <CollectionView x:Name="CvProducts" SelectionMode="Single" SelectionChanged="CvProducts_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
@@ -82,7 +82,7 @@
                             <Label x:Name="LblTotalItems" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HeightRequest="25" WidthRequest="25" TextColor="White" />
                         </Frame>
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapCartIcon" />
+                            <TapGestureRecognizer x:Name="TapCartIcon" Tapped="TapCartIcon_Tapped" />
                         </Grid.GestureRecognizers>
                     </Grid>
                 </StackLayout>
@@ -109,14 +109,14 @@
                         <Image Source="order.png" HeightRequest="30" WidthRequest="30" />
                         <Label Text="My Orders" TextColor="#80574D" HeightRequest="50" VerticalTextAlignment="Center" FontSize="20" />
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapOrders" />
+                            <TapGestureRecognizer x:Name="TapOrders" Tapped="TapOrders_Tapped" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <StackLayout Spacing="30" Orientation="Horizontal" Margin="20,0,0,0">
                         <Image Source="shopping_cart.png" HeightRequest="30" WidthRequest="30" />
                         <Label Text="Cart" TextColor="#80574D" HeightRequest="50" VerticalTextAlignment="Center" FontSize="20" />
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapCart" />
+                            <TapGestureRecognizer x:Name="TapCart" Tapped="TapCart_Tapped" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <StackLayout Spacing="30" Orientation="Horizontal" Margin="20,0,0,0">
