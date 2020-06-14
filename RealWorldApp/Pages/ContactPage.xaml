@@ -15,13 +15,13 @@
                 </Grid.ColumnDefinitions>
                 <Image Source="backarrow.png" Grid.Column="0" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TapBack" />
+                        <TapGestureRecognizer x:Name="TapBack" Tapped="TapBack_Tapped" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Grid.Column="1" TextColor="#CE0B06" Text="Contact Us" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" />
             </Grid>
             <Label Margin="20" Text="For further support you can call our helpline using the option below" FontSize="Body" />
-            <Button x:Name="BtnCall" Margin="50" Text="Call 36656656" BackgroundColor="#CE0B06" TextColor="White" FontSize="Medium" CornerRadius="25" />
+            <Button x:Name="BtnCall" Margin="50" Text="Call 36656656" BackgroundColor="#CE0B06" TextColor="White" FontSize="Medium" CornerRadius="25" Clicked="BtnCall_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

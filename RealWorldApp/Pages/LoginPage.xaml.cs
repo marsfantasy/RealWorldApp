@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,6 +26,9 @@ namespace RealWorldApp.Pages
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
             var response = await RealWorldApp.Services.ApiService.Login(EntEmail.Text, EntPassword.Text);
+            Preferences.Set("email", EntEmail.Text);
+            Preferences.Set("password", EntPassword.Text);
+
             if (response)
             {
                 Application.Current.MainPage = new NavigationPage(new HomePage());
@@ -35,6 +38,5 @@ namespace RealWorldApp.Pages
                 await DisplayAlert("Oops", "Something went wrong", "Cancel");
             }
         }
-
     }
 }

@@ -102,6 +102,9 @@ namespace RealWorldApp.Pages
             CloseHamBurgerMenu();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private async void CloseHamBurgerMenu()
         {
             await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
@@ -163,6 +166,28 @@ namespace RealWorldApp.Pages
         private void TapCart_Tapped(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new CartPage());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapContact_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new ContactPage());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapLogout_Tapped(object sender, EventArgs e)
+        {
+            Preferences.Set("accessToken", string.Empty);
+            Preferences.Set("tokenExpirationTime", 0);
+            Application.Current.MainPage = new NavigationPage(new SignupPage());
         }
     }
 }
