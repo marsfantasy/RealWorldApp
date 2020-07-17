@@ -26,7 +26,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Spacing="5" Padding="10" Margin="15,0,15,0" Orientation="Vertical">
+                        <StackLayout Spacing="5" Padding="10" Margin="15,0,15,0" Orientation="Vertical" HorizontalOptions="Center">
                             <Image Aspect="Fill" BackgroundColor="White" HeightRequest="150" WidthRequest="150" Source="{Binding FullImageUrl}" />
                             <Label TextColor="#000000" Text="{Binding name}" />
                             <Label TextColor="#B00905" Text="{Binding price, StringFormat='${0}'}" />

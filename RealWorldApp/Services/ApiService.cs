@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using UnixTimeStamp;
 using Xamarin.Essentials;
 using Xamarin.Forms.Internals;
+using static RealWorldApp.Models.Detect;
 
 namespace RealWorldApp.Services
 {
@@ -243,6 +244,17 @@ namespace RealWorldApp.Services
             var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Orders/OrderDetails/" + orderId);
             return JsonConvert.DeserializeObject<List<Order>>(response);
         }
+
+        public static async Task<List<MasterData>> GetDetectDatas(Guid detectId)
+        {
+            await TokenValidator.CheckTokenValidity();
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
+            var response = await httpClient.GetStringAsync("https://weleaderapi.azurewebsites.net/api/MedicalDetect/p/r2/FFA95EB0-2B8A-47B1-AC10-BBEC1710D10D");
+            return JsonConvert.DeserializeObject<List<MasterData>>(response);
+        }
+
+
     }
 
     public static class TokenValidator
@@ -261,4 +273,5 @@ namespace RealWorldApp.Services
             }
         }
     }
+
 }

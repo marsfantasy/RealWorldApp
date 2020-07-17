@@ -149,6 +149,16 @@ namespace RealWorldApp.Pages
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapBluetooth_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new OrdersPage());
+        }
+
+        /// <summary>
         /// 點選訂單圖示時
         /// </summary>
         /// <param name="sender"></param>
@@ -183,11 +193,31 @@ namespace RealWorldApp.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void TapSugar_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new OrdersPage());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TapLogout_Tapped(object sender, EventArgs e)
         {
             Preferences.Set("accessToken", string.Empty);
             Preferences.Set("tokenExpirationTime", 0);
             Application.Current.MainPage = new NavigationPage(new SignupPage());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapDetect_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new DetectDetailPage(Guid.Empty));
         }
     }
 }

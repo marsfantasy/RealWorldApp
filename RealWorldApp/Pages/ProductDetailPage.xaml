@@ -24,7 +24,7 @@
                             <Label Text="$" TextColor="#80574D" FontSize="Large" />
                         </StackLayout>
                     </StackLayout>
-                    <Label Text="健檢包含以下項目：" TextColor="#B00905" FontSize="Large" Margin="0,10,0,0" />
+                    <!--<Label Text="健檢包含以下項目：" TextColor="#B00905" FontSize="Large" Margin="0,10,0,0" />-->
                     <Label x:Name="LblDetail" TextColor="#80574D" FontSize="Body" />
                 </StackLayout>
                 <StackLayout Spacing="20" Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,0,0,40">
