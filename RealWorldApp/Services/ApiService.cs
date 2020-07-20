@@ -84,6 +84,28 @@ namespace RealWorldApp.Services
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<VerticalMenu>> GetVerticalMenus()
+        {
+            await TokenValidator.CheckTokenValidity();
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
+            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/VerticalMenus");
+            return JsonConvert.DeserializeObject<List<VerticalMenu>>(response);
+        }
+
+        public static async Task<List<MarqueeBanner>> GetMarqueeBanners()
+        {
+            await TokenValidator.CheckTokenValidity();
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
+            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/MarqueeBanners");
+            return JsonConvert.DeserializeObject<List<MarqueeBanner>>(response);
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="productId"></param>

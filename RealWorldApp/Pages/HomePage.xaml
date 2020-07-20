@@ -5,101 +5,206 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="RealWorldApp.Pages.HomePage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundImageSource="background.png">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
-            <StackLayout>
-                <StackLayout Orientation="Horizontal" HeightRequest="140">
-                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="30" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="8*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Source="banner.png" Aspect="Fill" />
-                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3">
-                            <Image HorizontalOptions="Start" Margin="20,20,10,0" Source="menu.png" HeightRequest="60">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer x:Name="ImgMenu" Tapped="ImgMenu_Tapped" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                          
-                            <Grid HorizontalOptions="EndAndExpand" Margin="0,0,5,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*" />
-                                    <ColumnDefinition Width="6*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Image VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Source="cart.png" Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" />
-
-                                <Frame Padding="1" CornerRadius="55" VerticalOptions="End" HorizontalOptions="Start" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" BackgroundColor="#CE0B06">
-                                    <Label x:Name="LblTotalItems" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HeightRequest="25" WidthRequest="25" TextColor="White" />
-                                </Frame>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer x:Name="TapCartIcon" Tapped="TapCartIcon_Tapped" />
-                                </Grid.GestureRecognizers>
-                            </Grid>
-                            
-                        </StackLayout>
-                        <Image Margin="0,15,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="kfc.png" Aspect="AspectFit" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" />
-                    </Grid>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Padding="5,5,5,5" >
-                    <Grid>
-                        <CollectionView x:Name="CvProducts" SelectionMode="Single" SelectionChanged="CvProducts_SelectionChanged">
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout Orientation="Vertical" Span="4" />
-                            </CollectionView.ItemsLayout>
-                            <CollectionView.ItemTemplate>
+            <ScrollView>
+                <StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" HeightRequest="350">
+                        <CarouselView x:Name="marqueeBanner" IsVisible="false">
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout Spacing="5" Padding="5" Margin="5,0,5,0" Orientation="Vertical">
-                                        <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="20" IsClippedToBounds="True" HeightRequest="70" WidthRequest="70" HorizontalOptions="Center">
-                                            <Image Aspect="AspectFill" HeightRequest="100" WidthRequest="50" Source="{Binding FullImageUrl}" />
+                                    <Grid>
+                                        <Frame HeightRequest="350" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                            <StackLayout>
+                                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                <Image Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="350" WidthRequest="350" Source="{Binding Image}" />
+                                                <Label Text="{Binding PublishDate}" HorizontalOptions="Center" />
+                                                <Label Text="{Binding Seq}" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                                            </StackLayout>
                                         </Frame>
-                                        <Label TextColor="#000000" Text="{Binding name}" HorizontalOptions="Center" VerticalOptions="FillAndExpand" FontSize="Micro" />
-                                        <!--<Label TextColor="#B00905" Text="{Binding price, StringFormat='${0}'}" />-->
-                                    </StackLayout>
+                                    </Grid>
                                 </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Grid>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" HeightRequest="110">
-                    <CollectionView x:Name="CvCategories" SelectionMode="Single" SelectionChanged="CvCategories_SelectionChanged">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal">
-                                    <Frame Padding="0" BackgroundColor="Transparent" Margin="5,0,5,0" HasShadow="True">
-                                        <StackLayout Orientation="Vertical">
-                                            <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="20" IsClippedToBounds="True" HeightRequest="70" WidthRequest="70" HorizontalOptions="Center">
-                                                <Image Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="FillAndExpand" Source="{Binding FullImageUrl}" />
-                                            </Frame>
-                                            <!--<Label TextColor="#B00905" HorizontalTextAlignment="Center" FontSize="Medium" Text="{Binding name}" />-->
-                                        </StackLayout>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        <CarouselView Position="{Binding position}"  ItemsSource="{Binding BannerData}" FlexLayout.Shrink="1" x:Name="MainCarouselView">
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image
+                               Aspect="AspectFill"
+                               HorizontalOptions="Center">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding Avatar}"
+
+			                        CachingEnabled="true"
+                                                CacheValidity="14" />
+                                            </Image.Source>
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                    Command="{Binding Source={x:Reference MyPage}, Path=BindingContext.TapImageCommand}"
+                                    CommandParameter="{Binding Avatar}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <Label Text="{Binding Title}"
+                                     FontSize="Title"
+                                   TextColor="Black"
+
+                                FontAttributes="Bold" VerticalOptions="End"  BackgroundColor="White" Opacity="0.4" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HeightRequest="400" Padding="5,5,5,5" BackgroundColor="Green" IsVisible="False">
+                        <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="8*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Source="banner.png" Aspect="Fill" />
+
+                            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                                <Image HorizontalOptions="Start" Margin="20,20,10,0" Source="menu.png" HeightRequest="60">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="ImgMenu" Tapped="ImgMenu_Tapped" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <Grid HorizontalOptions="EndAndExpand" Margin="0,0,5,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="6*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Source="cart.png" Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" />
+
+                                    <Frame Padding="1" CornerRadius="55" VerticalOptions="End" HorizontalOptions="Start" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" BackgroundColor="#CE0B06">
+                                        <Label x:Name="LblTotalItems" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HeightRequest="25" WidthRequest="25" TextColor="White" />
                                     </Frame>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="TapCartIcon" Tapped="TapCartIcon_Tapped" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </StackLayout>
+
+                            <Image Margin="0,15,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="kfc.png" Aspect="AspectFit" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" />
+                        </Grid>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" HeightRequest="100" Padding="5,5,5,5">
+                        <Grid>
+                            <CollectionView x:Name="CvVerticalMenus" SelectionMode="Single" SelectionChanged="CvVerticalMenus_SelectionChanged">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal" Span="1" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Spacing="5" Padding="5" Margin="5,5,5,5" Orientation="Vertical">
+                                            <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="10" IsClippedToBounds="True" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center">
+                                                <Image Aspect="AspectFill" HeightRequest="65" WidthRequest="65" HorizontalOptions="Center" VerticalOptions="FillAndExpand" Source="{Binding FullImageUrl}" />
+                                            </Frame>
+                                            <Label TextColor="#000000" Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="FillAndExpand" FontSize="Micro" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HeightRequest="100" Padding="5,5,5,5" IsVisible="false">
+                        <Grid>
+                            <CollectionView x:Name="CvProducts" SelectionMode="Single" SelectionChanged="CvProducts_SelectionChanged">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal" Span="1" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Spacing="5" Padding="5" Margin="5,5,5,5" Orientation="Vertical">
+                                            <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="10" IsClippedToBounds="True" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center">
+                                                <Image Aspect="AspectFill" HeightRequest="65" WidthRequest="65" HorizontalOptions="Center" VerticalOptions="FillAndExpand" Source="{Binding FullImageUrl}" />
+                                            </Frame>
+                                            <Label TextColor="#000000" Text="{Binding name}" HorizontalOptions="Center" VerticalOptions="FillAndExpand" FontSize="Micro" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </StackLayout>
+
+                    <Label Text="提供的服務" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center" Padding="5,5,5,5" />
+                    <StackLayout Orientation="Horizontal" HeightRequest="350" Padding="0,5,0,5">
+                        <Grid>
+                            <CollectionView x:Name="CvCategories" SelectionMode="Single" SelectionChanged="CvCategories_SelectionChanged">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal" Span="1" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame Padding="0" BackgroundColor="Transparent" Margin="5,0,5,0" HasShadow="True">
+                                                <StackLayout Orientation="Vertical">
+                                                    <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="10" IsClippedToBounds="True" HeightRequest="200" WidthRequest="300" HorizontalOptions="Center">
+                                                        <Image Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="FillAndExpand" Source="{Binding FullImageUrl}" />
+                                                    </Frame>
+                                                    <Label Text="{Binding Name}" FontSize="Micro" HorizontalOptions="Start" VerticalOptions="Center" />
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HeightRequest="80" Padding="0,5,0,50" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+                            
+                            <Image Grid.Column="1" Grid.Row="0" Source="facebook" />
+                            <Label Grid.Column="1" Grid.Row="1" Text="facebook" FontAttributes="Bold" FontSize="Micro" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Image Grid.Column="3" Grid.Row="0" Source="line" />
+                            <Label Grid.Column="3" Grid.Row="1" Text="Line" FontAttributes="Bold" FontSize="Micro" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Grid>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
+            </ScrollView>
+            
             <Grid x:Name="GridOverlay" IsVisible="False" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.6*" />

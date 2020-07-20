@@ -18,34 +18,58 @@ namespace RealWorldApp.Pages
     {
         public ObservableCollection<PopularProduct> ProductsCollection;
         public ObservableCollection<Category> CategoriesCollection;
+        public ObservableCollection<RealWorldApp.Models.VerticalMenu> VerticalMenusCollection;
+        public ObservableCollection<RealWorldApp.Models.MarqueeBanner> MarqueeBannersCollection;
 
         public HomePage()
         {
             InitializeComponent();
-            //建立和繫結至 ObservableCollection
-            ProductsCollection = new ObservableCollection<PopularProduct>();
+
+            //取得跑馬燈
+            MarqueeBannersCollection = new ObservableCollection<MarqueeBanner>();
+            GetMarqueeBanners();
+
+            //取得橫幅選單
+            VerticalMenusCollection = new ObservableCollection<VerticalMenu>();
+            GetVerticalMenus();
+
             //取得最受歡迎的產品
+            ProductsCollection = new ObservableCollection<PopularProduct>();
             GetPopularProducts();
-            //建立和繫結至 ObservableCollection
+
+            //取得產品分類
             CategoriesCollection = new ObservableCollection<Category>();
-            //取得商品目錄
             GetCategories();
+
             //設定登入帳號的名稱
             LblUserName.Text = Xamarin.Essentials.Preferences.Get("userName", string.Empty);
         }
 
         /// <summary>
-        /// 取得商品目錄
+        /// 取得跑馬燈
         /// </summary>
-        private async void GetCategories()
+        private async void GetMarqueeBanners()
         {
             //throw new NotImplementedException();
-            var categories = await ApiService.GetCategories();
-            foreach (var category in categories)
+            var marqueebanners = await ApiService.GetMarqueeBanners();
+            foreach (var marqueebanner in marqueebanners)
             {
-                CategoriesCollection.Add(category);
+                MarqueeBannersCollection.Add(marqueebanner);
             }
-            CvCategories.ItemsSource = CategoriesCollection;
+            marqueeBanner.ItemsSource = MarqueeBannersCollection;
+        }
+
+        /// <summary>
+        /// 取得橫幅選單
+        /// </summary>
+        private async void GetVerticalMenus()
+        {
+            var verticalmenus = await ApiService.GetVerticalMenus();
+            foreach (var verticalmenu in verticalmenus)
+            {
+                VerticalMenusCollection.Add(verticalmenu);
+            }
+            CvVerticalMenus.ItemsSource = VerticalMenusCollection;
         }
 
         /// <summary>
@@ -60,6 +84,20 @@ namespace RealWorldApp.Pages
                 ProductsCollection.Add(product);
             }
             CvProducts.ItemsSource = ProductsCollection;
+        }
+
+        /// <summary>
+        /// 取得產品分類
+        /// </summary>
+        private async void GetCategories()
+        {
+            //throw new NotImplementedException();
+            var categories = await ApiService.GetCategories();
+            foreach (var category in categories)
+            {
+                CategoriesCollection.Add(category);
+            }
+            CvCategories.ItemsSource = CategoriesCollection;
         }
 
         /// <summary>
@@ -103,12 +141,38 @@ namespace RealWorldApp.Pages
         }
 
         /// <summary>
-        /// 
+        ///  
         /// </summary>
         private async void CloseHamBurgerMenu()
         {
             await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
             GridOverlay.IsVisible = false;
+        }
+
+        /// <summary>
+        /// 當選擇橫幅選單項目時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CvVerticalMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentSelection = e.CurrentSelection.FirstOrDefault() as VerticalMenu;
+            if (currentSelection == null) return;
+            Navigation.PushModalAsync(new ProductDetailPage(currentSelection.id));
+            ((CollectionView)sender).SelectedItem = null;
+        }
+
+        /// <summary>
+        /// 當選擇最受歡迎的產品時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentSelection = e.CurrentSelection.FirstOrDefault() as PopularProduct;
+            if (currentSelection == null) return;
+            Navigation.PushModalAsync(new ProductDetailPage(currentSelection.id));
+            ((CollectionView)sender).SelectedItem = null;
         }
 
         /// <summary>
@@ -121,20 +185,7 @@ namespace RealWorldApp.Pages
             var currentSelection = e.CurrentSelection.FirstOrDefault() as Category;
             if (currentSelection == null) return;
             //Navigation.PushModalAsync(new ProductListPage());
-            Navigation.PushModalAsync(new ProductListPage(currentSelection.id, currentSelection.name));
-            ((CollectionView)sender).SelectedItem = null;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var currentSelection = e.CurrentSelection.FirstOrDefault() as PopularProduct;
-            if (currentSelection == null) return;
-            Navigation.PushModalAsync(new ProductDetailPage(currentSelection.id));
+            Navigation.PushModalAsync(new ProductListPage(currentSelection.id, currentSelection.Name));
             ((CollectionView)sender).SelectedItem = null;
         }
 
@@ -149,7 +200,7 @@ namespace RealWorldApp.Pages
         }
 
         /// <summary>
-        /// 
+        /// 點選藍牙圖示時
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -169,7 +220,7 @@ namespace RealWorldApp.Pages
         }
 
         /// <summary>
-        ///
+        /// 點選購物車圖示時
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
